@@ -17,10 +17,11 @@ Jeweler::Tasks.new do |gem|
   gem.name = "sdb-backup"
   gem.homepage = "http://github.com/ryan-mitchell/sdb-backup"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{SimpleDB backup tool}
+  gem.description = %Q{A command line tool for backing up and restoring AWS SimpleDB data.  Supports various methods of backing up and restoring.}
   gem.email = "rmitchell@lynchmarks.com"
   gem.authors = ["ryan-mitchell"]
+  gem.executables = ["sdb-backup"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
@@ -42,7 +43,7 @@ end
 
 task :default => :test
 
-require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
