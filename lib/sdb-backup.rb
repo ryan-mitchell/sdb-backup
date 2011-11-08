@@ -1,6 +1,7 @@
 require 'aws-sdk'
 require 'reader/sdb_domain.rb'
 require 'writer/sdb_domain.rb'
+require 'writer/xml.rb'
 
 class SdbBackup
 

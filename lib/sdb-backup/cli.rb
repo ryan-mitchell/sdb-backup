@@ -16,10 +16,15 @@ class SdbBackup
         end
 
         opts.on("-t", "--to=[sdb|xml]", "Backup destination") do |t|
-          options[:to] = t end
+          options[:to] = t 
+        end
 
         opts.on("-c", "--config=<filename>", "YAML configuration file") do |c|
           options[:config_file] = c
+        end
+
+        opts.on("-x", "--xml=<filename>", "Location of XML backup") do |c|
+          options[:xml_path] = c
         end
 
         opts.on_tail("-h", "--help", "Show this message") do
@@ -46,8 +51,8 @@ class SdbBackup
       when "sdb"
         writer = SdbBackup::Writer::SdbDomain.new(AWS::SimpleDB.new(config['destination']['sdb']))
       when "xml"
-        puts "Writer not supported"
-        exit
+        raise "Must provide a path to the XML backup file with --xml" if options[:xml_path].nil?
+        writer = SdbBackup::Writer::Xml.new(options[:xml_path])
       end
 
       sdb_backup = SdbBackup.new(reader, writer)
